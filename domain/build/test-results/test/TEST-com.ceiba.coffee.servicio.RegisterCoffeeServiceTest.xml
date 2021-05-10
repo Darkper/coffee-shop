@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.ceiba.coffee.servicio.RegisterCoffeeServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-05-10T03:59:26" hostname="JOHNY-SOTO" time="0.15">
+  <properties/>
+  <testcase name="validateCreateCoffee" classname="com.ceiba.coffee.servicio.RegisterCoffeeServiceTest" time="0.15"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

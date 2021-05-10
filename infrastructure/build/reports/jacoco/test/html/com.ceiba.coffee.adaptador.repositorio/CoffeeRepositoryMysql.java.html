@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CoffeeRepositoryMysql.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">infrastructure</a> &gt; <a href="index.source.html" class="el_package">com.ceiba.coffee.adaptador.repositorio</a> &gt; <span class="el_source">CoffeeRepositoryMysql.java</span></div><h1>CoffeeRepositoryMysql.java</h1><pre class="source lang-java linenums">package com.ceiba.coffee.adaptador.repositorio;
+
+import com.ceiba.coffee.model.dto.CoffeeDto;
+import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
+import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
+import com.ceiba.coffee.model.entity.Coffee;
+import com.ceiba.coffee.puerto.repositorio.CoffeeRepository;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class CoffeeRepositoryMysql implements CoffeeRepository {
+
+    private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
+
+    @SqlStatement(namespace=&quot;coffee&quot;, value=&quot;create&quot;)
+    private static String createSql;
+
+    @SqlStatement(namespace=&quot;coffee&quot;, value=&quot;update&quot;)
+    private static String updateSql;
+
+    @SqlStatement(namespace=&quot;coffee&quot;, value=&quot;delete&quot;)
+    private static String deleteSql;
+
+    @SqlStatement(namespace=&quot;coffee&quot;, value=&quot;exist&quot;)
+    private static String existSql;
+
+
+<span class="fc" id="L29">    public CoffeeRepositoryMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {</span>
+<span class="fc" id="L30">        this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;</span>
+<span class="fc" id="L31">    }</span>
+
+    @Override
+    public Integer create(Coffee coffee) {
+<span class="fc" id="L35">        return this.customNamedParameterJdbcTemplate.create(CoffeeDto.fromEntity(coffee), createSql);</span>
+    }
+
+    @Override
+    public void delete(int id) {
+<span class="fc" id="L40">        MapSqlParameterSource paramSource = new MapSqlParameterSource();</span>
+<span class="fc" id="L41">        paramSource.addValue(&quot;id&quot;, id);</span>
+
+<span class="fc" id="L43">        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(deleteSql, paramSource);</span>
+<span class="fc" id="L44">    }</span>
+
+    @Override
+    public boolean exist(int id) {
+<span class="fc" id="L48">        MapSqlParameterSource paramSource = new MapSqlParameterSource();</span>
+<span class="fc" id="L49">        paramSource.addValue(&quot;id&quot;, id);</span>
+
+<span class="fc" id="L51">        return this.customNamedParameterJdbcTemplate.</span>
+<span class="fc" id="L52">                    getNamedParameterJdbcTemplate().</span>
+<span class="fc" id="L53">                    queryForObject(existSql, paramSource, Boolean.class);</span>
+    }
+
+    @Override
+    public void update(Coffee coffee) {
+<span class="fc" id="L58">        this.customNamedParameterJdbcTemplate.update(CoffeeDto.fromEntity(coffee), updateSql);</span>
+<span class="fc" id="L59">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
