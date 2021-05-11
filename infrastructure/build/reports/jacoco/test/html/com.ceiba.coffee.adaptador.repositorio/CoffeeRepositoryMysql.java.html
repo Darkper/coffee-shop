@@ -4,7 +4,7 @@ import com.ceiba.coffee.model.dto.CoffeeDto;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
 import com.ceiba.coffee.model.entity.Coffee;
-import com.ceiba.coffee.puerto.repositorio.CoffeeRepository;
+import com.ceiba.coffee.port.repository.CoffeeRepository;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
@@ -32,31 +32,31 @@ public class CoffeeRepositoryMysql implements CoffeeRepository {
 
     @Override
     public Integer create(Coffee coffee) {
-<span class="fc" id="L35">        return this.customNamedParameterJdbcTemplate.create(CoffeeDto.fromEntity(coffee), createSql);</span>
+<span class="nc" id="L35">        return this.customNamedParameterJdbcTemplate.create(CoffeeDto.fromEntity(coffee), createSql);</span>
     }
 
     @Override
     public void delete(int id) {
-<span class="fc" id="L40">        MapSqlParameterSource paramSource = new MapSqlParameterSource();</span>
-<span class="fc" id="L41">        paramSource.addValue(&quot;id&quot;, id);</span>
+<span class="nc" id="L40">        MapSqlParameterSource paramSource = new MapSqlParameterSource();</span>
+<span class="nc" id="L41">        paramSource.addValue(&quot;id&quot;, id);</span>
 
-<span class="fc" id="L43">        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(deleteSql, paramSource);</span>
-<span class="fc" id="L44">    }</span>
+<span class="nc" id="L43">        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(deleteSql, paramSource);</span>
+<span class="nc" id="L44">    }</span>
 
     @Override
     public boolean exist(int id) {
-<span class="fc" id="L48">        MapSqlParameterSource paramSource = new MapSqlParameterSource();</span>
-<span class="fc" id="L49">        paramSource.addValue(&quot;id&quot;, id);</span>
+<span class="nc" id="L48">        MapSqlParameterSource paramSource = new MapSqlParameterSource();</span>
+<span class="nc" id="L49">        paramSource.addValue(&quot;id&quot;, id);</span>
 
-<span class="fc" id="L51">        return this.customNamedParameterJdbcTemplate.</span>
-<span class="fc" id="L52">                    getNamedParameterJdbcTemplate().</span>
-<span class="fc" id="L53">                    queryForObject(existSql, paramSource, Boolean.class);</span>
+<span class="nc" id="L51">        return this.customNamedParameterJdbcTemplate.</span>
+<span class="nc" id="L52">                    getNamedParameterJdbcTemplate().</span>
+<span class="nc" id="L53">                    queryForObject(existSql, paramSource, Boolean.class);</span>
     }
 
     @Override
     public void update(Coffee coffee) {
-<span class="fc" id="L58">        this.customNamedParameterJdbcTemplate.update(CoffeeDto.fromEntity(coffee), updateSql);</span>
-<span class="fc" id="L59">    }</span>
+<span class="nc" id="L58">        this.customNamedParameterJdbcTemplate.update(CoffeeDto.fromEntity(coffee), updateSql);</span>
+<span class="nc" id="L59">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

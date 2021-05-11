@@ -7,8 +7,8 @@ import java.util.List;
 public interface CoffeeDao {
 
     /**
-     * Permite listar usuarios
-     * @return los usuarios
+     * Permite listar cafe
+     * @return cafe
      */
     List<CoffeeDto> list();
 }

@@ -13,7 +13,6 @@ public class CoffeeFactory {
 
     public Coffee create(RegisterCoffeeCommand registerCoffeeCommand) {
         return new Coffee(
-                0,
                 registerCoffeeCommand.getName(),
                 CoffeeCategory.fromId(registerCoffeeCommand.getCategory()),
                 Money.createUSD(registerCoffeeCommand.getValue()),

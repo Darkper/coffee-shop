@@ -3,6 +3,7 @@ package com.ceiba.coffee.service;
 import com.ceiba.coffee.exception.CoffeeNotFoundException;
 import com.ceiba.coffee.model.entity.Coffee;
 import com.ceiba.coffee.port.repository.CoffeeRepository;
+import com.ceiba.domain.exception.NoDataException;
 
 public class UpdateCoffeeService {
 
@@ -22,7 +23,7 @@ public class UpdateCoffeeService {
     private void validateExistence(Coffee coffee) {
         boolean exist = this.coffeeRepository.exist(coffee.getId());
         if(!exist) {
-            throw new CoffeeNotFoundException(COFFEE_NOT_FOUND);
+            throw new NoDataException(COFFEE_NOT_FOUND);
         }
     }
 }

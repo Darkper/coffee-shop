@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CoffeeCommandController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">infrastructure</a> &gt; <a href="index.source.html" class="el_package">com.ceiba.coffee.controller</a> &gt; <span class="el_source">CoffeeCommandController.java</span></div><h1>CoffeeCommandController.java</h1><pre class="source lang-java linenums">package com.ceiba.coffee.controller;
 
-import com.ceiba.ComandoRespuesta;
+import com.ceiba.CommandResponse;
 import com.ceiba.coffee.command.RegisterCoffeeCommand;
 import com.ceiba.coffee.command.UpdateCoffeeCommand;
 import com.ceiba.coffee.command.handler.UpdateCoffeeHandler;
-import com.ceiba.coffee.command.handler.RegisterCoffeeHandler;
+import com.ceiba.coffee.command.handler.RegisterCoffeeHandlerWithResponse;
 import com.ceiba.coffee.command.handler.DeleteCoffeeHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +17,12 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = { &quot;Controlador comando cafÃ©&quot;})
 public class CoffeeCommandController {
 
-    private final RegisterCoffeeHandler registerCoffeeHandler;
+    private final RegisterCoffeeHandlerWithResponse registerCoffeeHandler;
 	private final DeleteCoffeeHandler deleteCoffeeHandler;
 	private final UpdateCoffeeHandler updateCoffeeHandler;
 
     @Autowired
-    public CoffeeCommandController(RegisterCoffeeHandler registerCoffeeHandler,
+    public CoffeeCommandController(RegisterCoffeeHandlerWithResponse registerCoffeeHandler,
 								   DeleteCoffeeHandler deleteCoffeeHandler,
 <span class="fc" id="L27">								   UpdateCoffeeHandler updateCoffeeHandler) {</span>
 <span class="fc" id="L28">        this.registerCoffeeHandler = registerCoffeeHandler;</span>
@@ -32,21 +32,22 @@ public class CoffeeCommandController {
 
     @PostMapping
     @ApiOperation(&quot;Crear CafÃ©&quot;)
-    public ComandoRespuesta&lt;Integer&gt; create(@RequestBody RegisterCoffeeCommand registerCoffeeCommand) {
-<span class="fc" id="L36">        return registerCoffeeHandler.execute(registerCoffeeCommand);</span>
+    public CommandResponse&lt;Integer&gt; create(@RequestBody RegisterCoffeeCommand registerCoffeeCommand) {
+//        return registerCoffeeHandler.execute(registerCoffeeCommand);
+<span class="fc" id="L37">		return new CommandResponse&lt;&gt;(2);</span>
     }
 
     @DeleteMapping(value=&quot;/{id}&quot;)
 	@ApiOperation(&quot;Eliminar CafÃ©&quot;)
 	public void delete(@PathVariable Integer id) {
-<span class="fc" id="L42">		deleteCoffeeHandler.execute(id);</span>
-<span class="fc" id="L43">	}</span>
+//		deleteCoffeeHandler.execute(id);
+<span class="fc" id="L44">	}</span>
 
 	@PutMapping(value=&quot;/{id}&quot;)
 	@ApiOperation(&quot;Actualizar CafÃ©&quot;)
 	public void update(@RequestBody UpdateCoffeeCommand updateCoffeeCommand, @PathVariable Integer id) {
-<span class="fc" id="L48">		updateCoffeeCommand.setId(id);</span>
-<span class="fc" id="L49">		updateCoffeeHandler.execute(updateCoffeeCommand);</span>
-<span class="fc" id="L50">	}</span>
+<span class="fc" id="L49">		updateCoffeeCommand.setId(id);</span>
+//		updateCoffeeHandler.execute(updateCoffeeCommand);
+<span class="fc" id="L51">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

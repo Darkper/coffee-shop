@@ -7,11 +7,11 @@ import lombok.Getter;
 @Getter
 public class Coffee {
 
-    private final int id;
-    private final String name;
-    private final CoffeeCategory category;
-    private final Money price;
-    private final int units;
+    private int id;
+    private String name;
+    private CoffeeCategory category;
+    private Money price;
+    private int units;
 
     public Coffee(int id, String name, CoffeeCategory category, Money price, int units) {
         this.id = id;
@@ -21,4 +21,10 @@ public class Coffee {
         this.units = units;
     }
 
+    public Coffee(String name, CoffeeCategory category, Money price, int units) {
+        this.name = name;
+        this.category = category;
+        this.price = price;
+        this.units = units;
+    }
 }

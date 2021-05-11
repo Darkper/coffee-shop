@@ -40,7 +40,7 @@ public class CoffeeCommandControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(coffee)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 2}"));
+                .andExpect(content().json("{'value': 2}"));
     }
 
     @Test
